@@ -2,6 +2,7 @@ package com.venzyk.showlargestpicnasa.service;
 
 import com.venzyk.showlargestpicnasa.model.Photos;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -25,6 +26,7 @@ public class LargestPictureService {
     final String APY_KEY = "api_key";
     final String DEMO_KEY = "DEMO_KEY";
 
+    @Cacheable("largest-picture")
     public String findLargestPictureUrl(String sol) {
         String uri = UriComponentsBuilder.fromUriString(baseUri)
                 .queryParam(SOL, sol)
